@@ -5,36 +5,64 @@ import {deleteQuestion} from "../middlewares/dataTransferPayload";
 import {loadAllQuestions, loadAllQuestionsByUserId} from "../middlewares/questionListPayload";
 import {useEffect} from "react";
 import {questionListLoading} from "../actions/questionListActions";
+import { ModalDelete } from "../utils/ModalDelete";
+import { useState } from "react";
 
 export const Question = ({question}) => {
 
     const state = useSelector(state => state.user.user)
-    const loading = useSelector(state => state.question.loading)
+    const myQuestion = useSelector(state => state.question)
     const dispatch = useDispatch();
     const navigate = useNavigate()
 
-    const handleDelete = (id) => () =>{
+    const msgModal = {
+        msg: "¿Desea eliminar esta pregunta?",
+        titulo: "Eliminar pregunta",
+    };
+
+    const [open, setOpen] = useState(false);
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleConfirm = (id) => () =>{
         dispatch(deleteQuestion(id))
         dispatch(questionListLoading())
-        navigate("/mispreguntas")
+        if(myQuestion===null){
+            navigate("/mispreguntas")
+        }
+        setOpen(false);
     }
 
-    useEffect(() => {
-    }, [loading])
+    const handleDelete = () =>{
+        setOpen(true)
+    }
+
 
     return(
-        <>
+        <div className="question">
             {state && state.id === question.userId ? <div>
                     <div>{question.questionBody}</div>
                     <div>{question.category}</div>
                     <div>{question.type}</div>
-                    <button className="button" onClick={handleDelete(question.id)}>Eliminar</button>
+                    <div>{question.score}</div>
+                    <div>{question.dateOf}</div>
+                    <button className="btn btn-secondary px-5 mr-3" onClick={handleDelete}>Eliminar</button>
+                    <ModalDelete
+                        msgModal={msgModal}
+                        open={open}
+                        handleClose={handleClose}
+                        handleConfirm={handleConfirm(question.id)}
+                    />
                 </div>:
                 <div>
                     <div>{question.questionBody}</div>
                     <div>{question.category}</div>
                     <div>{question.type}</div>
+                    <div>{question.score}</div>
+                    <div>{question.dateOf}</div>
                 </div>}
-        </>
+        </div>
     )
 }

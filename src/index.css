@@ -21,7 +21,7 @@ nav section {
 }
 
 nav a {
-  font-weight: 700;
+  font-weight: 500;
   padding: 1rem 1.5rem;
   border-radius: 4px;
 }
@@ -30,12 +30,8 @@ nav a:first-of-type {
   margin-left: -1.5rem;
 }
 
-nav a:hover {
-  background: #222;
-}
-
 a {
-  color: #ea3546;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -108,4 +104,10 @@ textarea {
 
 .container{
   align-items: center;
+}
+
+.card{
+  max-width: 30rem;
+  justify-content: center;
+  margin-top: 20px;
 }

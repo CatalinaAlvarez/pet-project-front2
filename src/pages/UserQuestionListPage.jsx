@@ -22,7 +22,7 @@ export const UserQuestionListPage = () =>{
             {questionList && questionList.map((q) => {
                 return (<div className="question-excerpt">
                     <Question key={q.id} question={q}/>
-                    <Link to={`/preguntas/${q.id}`} className="button" >
+                    <Link to={`/preguntas/${q.id}`} className="btn btn-secondary px-5 mr-3" >
                         View Question
                     </Link>
                 </div>)

@@ -37,8 +37,8 @@ export const PrivateNavbar = () =>{
     }
 
     return(
-        <nav>
-            <section>
+        <nav className="navbar navbar-expand-sm fixed-top navbar-light bg-info">
+            <section className="nav-item nav-link mr-3">
                 {privateNavbarOptions.map((e,index) =>
                 { return (<Link key={index} to={e.url} onClick={handleNavigate}>{e.titulo} </Link>)})}
             </section>

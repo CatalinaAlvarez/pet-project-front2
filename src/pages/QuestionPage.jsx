@@ -29,12 +29,12 @@ export const QuestionPage = () =>{
         dispatch(loadAllAnswerByParentId(questionId))
         setAnswering(false)
     }, [answerData])
-
+    
     return(
         <div>
             {question && <div className="question-excerpt">
                 <Question question={question}/>
-                {userState.user && <button className="button" onClick={toggleAnswer}>Responder</button>}
+                {userState.user && <button className="btn btn-secondary px-5 mr-3" onClick={toggleAnswer}>Responder</button>}
                 {userState.user && answering ? <CreateAnswerForm /> : <></>}
             </div>}
             {answerList && answerList.map((a) => <div className="question-excerpt">

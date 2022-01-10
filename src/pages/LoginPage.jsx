@@ -96,10 +96,10 @@ export const LoginPage = () => {
 
 
     return (
-        <div>
+        <div className="card container text-center py-5 mt-7">
             <h1>Home</h1>
             {state ?
-                <button className="button" onClick={logOutHandler}>
+                <button className="btn btn-secondary px-5 mr-3" onClick={logOutHandler}>
                     Log-out
                 </button> :
                 <div>
@@ -133,7 +133,7 @@ export const LoginPage = () => {
 
                                 <p className="text-danger">{loginData.error}</p>
 
-                                <button className="button" type="submit">
+                                <button className="btn btn-secondary px-5 mr-3" type="submit">
                                     Iniciar sesión
                                 </button>
                             </div>
@@ -146,7 +146,7 @@ export const LoginPage = () => {
                         ></ModalLogin>
                     </div>
 
-                    <button className="button" onClick={logInHandler}>
+                    <button className="btn btn-secondary px-5 mr-3" onClick={logInHandler}>
                         Iniciar con google
                     </button>
                 </div>

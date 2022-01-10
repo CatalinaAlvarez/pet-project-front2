@@ -77,7 +77,7 @@ export const ProfilePage = () =>{
                         ></input>
                     </div>
                     <div className="form-group">
-                        <button className="button" type="submit">
+                        <button className="btn btn-secondary px-5 mr-3" type="submit">
                             Actualizar
                         </button>
                     </div>
