@@ -15,16 +15,18 @@ function App() {
   const state = useSelector(state => state.user);
 
   useEffect(()=>{
-    app.auth().onAuthStateChanged((user)=>{
-          if(user){
-            dispatch(userLoggedAction(user.uid ,
-                user.displayName,
-                user.email,
-                user.photoURL))
+    if(state.user === null){
+      app.auth().onAuthStateChanged((user)=>{
+        if(user){
+          dispatch(userLoggedAction(user.uid ,
+              user.displayName,
+              user.email,
+              user.photoURL))
+            }
           }
-        }
-    )
-    },[])
+        )
+      }
+    },[state.user])
 
 
 

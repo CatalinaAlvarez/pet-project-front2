@@ -24,24 +24,24 @@ export const Question = ({question}) => {
 
     return(
         <>
-            {state.id === question.userId ? <div>
-                    <div>{question.id}</div>
-                    <div>{question.userId}</div>
+            {state && state.id === question.userId ? <div>
+                    {/* <div>{question.id}</div>
+                    <div>{question.userId}</div> */}
                     <div>{question.questionBody}</div>
                     <div>{question.category}</div>
                     <div>{question.type}</div>
-                    <div>{question.score}</div>
-                    <div>{question.dateOf}</div>
+                    {/* <div>{question.score}</div>
+                    <div>{question.dateOf}</div> */}
                     <button className="button" onClick={handleDelete(question.id)}>Eliminar</button>
                 </div>:
                 <div>
-                    <div>{question.id}</div>
-                    <div>{question.userId}</div>
+                    {/* <div>{question.id}</div>
+                    <div>{question.userId}</div> */}
                     <div>{question.questionBody}</div>
                     <div>{question.category}</div>
                     <div>{question.type}</div>
-                    <div>{question.score}</div>
-                    <div>{question.dateOf}</div>
+                    {/* <div>{question.score}</div>
+                    <div>{question.dateOf}</div> */}
                 </div>}
         </>
     )

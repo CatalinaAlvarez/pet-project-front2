@@ -2,12 +2,12 @@ import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
 
 export const app = firebase.initializeApp({
-        apiKey: "AIzaSyDKegHyBmSLl8IcxhnHpEYigdS6_gSotcw",
-        authDomain: "petproject-4e14e.firebaseapp.com",
-        projectId: "petproject-4e14e",
-        storageBucket: "petproject-4e14e.appspot.com",
-        messagingSenderId: "498611197054",
-        appId: "1:498611197054:web:8f414dac907a285c74b42f"
+        apiKey: "AIzaSyCRh0lOuS32LHLM8f7gKEN-nFBOAynGYKM",
+        authDomain: "pet-project-q-a.firebaseapp.com",
+        projectId: "pet-project-q-a",
+        storageBucket: "pet-project-q-a.appspot.com",
+        messagingSenderId: "651965269947",
+        appId: "1:651965269947:web:e6e0b70eac223d58a8a69e"
 })
 
 export const google = new firebase.auth.GoogleAuthProvider();
