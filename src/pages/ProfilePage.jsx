@@ -24,8 +24,6 @@ export const ProfilePage = () =>{
         navigate("/preguntas")
     }
 
-
-
     return(
         <div>
             <h1 className="button">Perfil</h1>
