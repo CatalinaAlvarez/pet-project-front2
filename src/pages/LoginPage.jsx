@@ -4,16 +4,16 @@ import { userCreatedAction } from "../actions/dataTransferActions";
 import { useNavigate } from "react-router-dom"
 import { app, google } from "../webService/firebase";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import { createUser } from "../middlewares/dataTransferPayload";
 import { ModalLogin } from "../utils/ModalLogin";
+import { readUser } from '../middlewares/dataTransferPayload';
 
 export const LoginPage = () => {
 
     const state = useSelector(state => state.user.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { register, handleSubmit } = useForm();
+    const userDto = useSelector(state=> state.dataTransfer.userData);
 
     const logOutHandler = () => {
         app.auth().signOut();
@@ -29,16 +29,15 @@ export const LoginPage = () => {
                     user.user.email,
                     user.user.photoURL));
                 navigate("/preguntas");
-                dispatch(userCreatedAction({
-                    id: user.user.uid,
-                    userName: user.user.displayName,
-                    email: user.user.email
-                }))
-                dispatch(createUser({
-                    id: user.user.uid,
-                    userName: user.user.displayName,
-                    email: user.user.email
-                }))
+                dispatch(readUser(user.user.uid))
+                if(userDto === null){
+                    dispatch(createUser({
+                        id: user.user.uid,
+                        userName: user.user.displayName,
+                        photo:user.user.photoURL,
+                        email: user.user.email,}))
+                    }
+                
             }).catch()
     }
 
@@ -68,9 +67,11 @@ export const LoginPage = () => {
                     photo:user.user.photoURL}));
                 dispatch(userCreatedAction({id: user.user.uid,
                     userName: user.user.displayName,
+                    photo:user.user.photoURL,
                     email:user.user.email}))
                 dispatch(createUser({id: user.user.uid,
                     userName: user.user.displayName,
+                    photo:user.user.photoURL,
                     email:user.user.email}))
             })
         setOpen(false);
@@ -85,12 +86,6 @@ export const LoginPage = () => {
                     name:user.user.displayName,
                     email:user.user.email,
                     photo:user.user.photoURL}));
-                dispatch(userCreatedAction({id: user.user.uid,
-                    userName: user.user.displayName,
-                    email:user.user.email}))
-                dispatch(createUser({id: user.user.uid,
-                    userName: user.user.displayName,
-                    email:user.user.email}))
             })
             .catch( error => {
             setOpen(true)
@@ -98,10 +93,6 @@ export const LoginPage = () => {
             console.clear()
         })
     }
-
-   
-
-
 
 
     return (

@@ -20,7 +20,12 @@ const privateNavbarOptions =[
             {
                 titulo:"Crear Pregunta",
                 url:"/preguntas/crear"
+            },
+            {
+                titulo:"Perfil",
+                url:"/perfil"
             }
+            
         ]
 
 export const PrivateNavbar = () =>{

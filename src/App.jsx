@@ -7,6 +7,9 @@ import {app} from "./webService/firebase";
 import {PrivateLayout} from "./layouts/PrivateLayout";
 import {PublicLayout} from "./layouts/PublicLayout";
 import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
+import { userCreatedAction } from './actions/dataTransferActions';
+import { userLoadedAction } from './actions/dataTransferActions';
+import { readUser } from './middlewares/dataTransferPayload';
 
 
 function App() {
@@ -23,6 +26,7 @@ function App() {
               user.email,
               user.photoURL))
             }
+          dispatch(readUser(user.uid))
           }
         )
       }
