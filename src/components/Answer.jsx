@@ -1,3 +1,5 @@
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import {useDispatch, useSelector} from "react-redux";
 import {deleteAnswerById} from "../middlewares/answerListPayload"
 import { ModalDelete } from "../utils/ModalDelete";
@@ -28,9 +30,15 @@ export const Answer = ({answer}) => {
         setOpen(true)
     }
 
+    const modules = {
+        toolbar: false
+    };
+    
     return(
         <div>
-            <div>{answer.answerBody}</div>
+             <ReactQuill value={answer.answerBody}  
+                    modules={modules}   
+                    readOnly='true'/>
             <div>{answer.score}</div>
             <div>{answer.votes}</div>
             {(user && answer.userId === user.id) &&

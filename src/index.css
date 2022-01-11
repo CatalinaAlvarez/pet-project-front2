@@ -111,3 +111,8 @@ textarea {
   justify-content: center;
   padding-top: 100px;
 }
+
+.question card{
+  max-width: 50%;
+  align-items: center;
+}
