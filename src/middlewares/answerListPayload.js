@@ -3,7 +3,8 @@ import {
     answerListLoading,
     answerListLoadSuccess,
     answerListLoadError,
-    answerListDeletingAnswer
+    answerListDeletingAnswer,
+    answerToAnswerLoad
 } from "../actions/answerListActions";
 import axios from "axios";
 
@@ -27,6 +28,19 @@ export const deleteAnswerById = (parentId, answerId) => (dispatch) => {
 
     axios.request(option).then(function(response){
         dispatch(loadAllAnswerByParentId(parentId))
+    }).catch(function(error){
+        dispatch(answerListLoadError(error.message))
+    });
+}
+
+export const loadAllAnswerToAnswer = (parentId) => (dispatch) => {
+
+    dispatch(answerListLoading());
+
+    const option = options(parentId).getAllByParentId;
+
+    axios.request(option).then(function(response){
+        dispatch(answerToAnswerLoad(response.data))
     }).catch(function(error){
         dispatch(answerListLoadError(error.message))
     });
