@@ -28,9 +28,13 @@ export const CreateQuestion = () =>{
 
 
     return(
-        <form onSubmit={handleSubmit(onSubmit)}>
-                <div><h1>Hola</h1><h1>Pregunta</h1></div>
 
+        <div>
+        <div className="container justify-content-center border-primary mt-7">
+        <h1>Pregunta</h1>
+        <form className="mt-5 py-5 px-5" onSubmit={handleSubmit(onSubmit)}>
+                
+                <h1>Pregunta</h1>
                 <label>Añadir nueva pregunta</label>
                 <TextEditor body={body} setBody={setBody}/>
                 <label className=" font-medium">Type</label>
@@ -52,6 +56,8 @@ export const CreateQuestion = () =>{
                 </select>
                 <button className="btn btn-secondary px-5 mr-3" type="submit">Enviar</button>
             </form>
+            </div>
+            </div>
     )
 
 

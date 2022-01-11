@@ -20,7 +20,7 @@ export const UserQuestionListPage = () =>{
     return(
         <div>
             {questionList && questionList.map((q) => {
-                return (<div className="question-excerpt">
+                return (<div className="card container text-center py-5 mt-7">
                     <Question key={q.id} question={q}/>
                     <Link to={`/preguntas/${q.id}`} className="btn btn-secondary px-5 mr-3" >
                         View Question
