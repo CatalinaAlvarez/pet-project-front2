@@ -27,7 +27,6 @@ export const ProfilePage = () =>{
     return(
         <div>
             <div className="container justify-content-center border-primary mt-7">
-                <h1>Perfil</h1>
                 <form className="mt-5 py-5 px-5" onSubmit={handleSubmit(updateHandler)}>
                     <h2>
                         Actualizar información

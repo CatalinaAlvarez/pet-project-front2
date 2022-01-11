@@ -13,7 +13,6 @@ p {
 nav {
   display: flex;
   padding: 2rem 0;
-  background: #111;
 }
 
 nav section {
@@ -105,12 +104,14 @@ textarea {
 .container{
   align-items: center;
   margin-top: 40px;
+  overflow-y: auto;
 }
 
 .card{
   max-width: 30rem;
   justify-content: center;
   padding-top: 100px;
+  overflow-y: auto;
 }
 
 .question card{

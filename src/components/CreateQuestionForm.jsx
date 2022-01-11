@@ -31,7 +31,6 @@ export const CreateQuestion = () =>{
 
         <div>
         <div className="container justify-content-center border-primary mt-7">
-        <h1>Pregunta</h1>
         <form className="mt-5 py-5 px-5" onSubmit={handleSubmit(onSubmit)}>
                 
                 <h1>Pregunta</h1>
