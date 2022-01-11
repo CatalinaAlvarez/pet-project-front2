@@ -104,6 +104,7 @@ textarea {
 
 .container{
   align-items: center;
+  margin-top: 40px;
 }
 
 .card{
@@ -121,4 +122,21 @@ textarea {
   width: 50px;
   display: flex;
   padding-left: 10px;
+}
+
+.footer{
+  height: 40px;
+  display: flex;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  color: white;
+  background: #60aab9;
+
+}
+
+.footer p{
+  margin: 15px;
 }

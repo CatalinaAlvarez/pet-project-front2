@@ -56,7 +56,7 @@ export const Question = ({question}) => {
                     <div>{question.type}</div>
                     <div>{question.score}</div>
                     <div>{question.dateOf}</div>
-                    <button className="btn btn-secondary px-5 mr-3" onClick={handleDelete}>Eliminar</button>
+                    <button className="btn btn-primary px-5 mr-3" onClick={handleDelete}>Eliminar</button>
                     <ModalDelete
                         msgModal={msgModal}
                         open={open}

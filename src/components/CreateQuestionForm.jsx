@@ -54,7 +54,7 @@ export const CreateQuestion = () =>{
                         <option value="SOCIAL_SCIENCES">SOCIAL SCIENCES</option>
                         <option value="LANGUAGE">LANGUAGE</option>
                 </select>
-                <button className="btn btn-secondary px-5 mr-3" type="submit">Enviar</button>
+                <button className="btn btn-primary px-5 mr-3" type="submit">Enviar</button>
             </form>
             </div>
             </div>

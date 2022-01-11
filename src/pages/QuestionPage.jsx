@@ -34,7 +34,7 @@ export const QuestionPage = () =>{
         <div>
             {question && <div className="question-excerpt">
                 <Question question={question}/>
-                {userState.user && <button className="btn btn-secondary px-5 mr-3" onClick={toggleAnswer}>Responder</button>}
+                {userState.user && <button className="btn btn-primary px-5 mr-3" onClick={toggleAnswer}>Responder</button>}
                 {userState.user && answering ? <CreateAnswerForm /> : <></>}
             </div>}
             {answerList ? <h1>Respuestas</h1>:<></>}

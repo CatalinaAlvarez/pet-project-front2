@@ -43,7 +43,7 @@ export const Answer = ({answer}) => {
             <div>{answer.votes}</div>
             {(user && answer.userId === user.id) &&
                 <>
-                    <button className="btn btn-secondary px-5 mr-3" onClick={handleDelete}>Eliminar</button>
+                    <button className="btn btn-primary px-5 mr-3" onClick={handleDelete}>Eliminar</button>
                     <ModalDelete
                         msgModal={msgModal}
                         open={open}

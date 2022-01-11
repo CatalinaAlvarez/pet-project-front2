@@ -28,7 +28,7 @@ export const CreateAnswerForm = () =>{
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>Añadir nueva respuesta</label>
                 <TextEditor body={body} setBody={setBody}/>
-                <button className="btn btn-secondary px-5 mr-3" type="submit">Enviar</button>
+                <button className="btn btn-primary px-5 mr-3" type="submit">Enviar</button>
             </form>
         </div>
     )
