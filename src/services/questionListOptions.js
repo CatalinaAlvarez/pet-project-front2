@@ -4,13 +4,13 @@ export const questionListOptions = (userId="") => {
         {
             getAll:{
                 method: 'GET',
-                url: `http://localhost:8080/preguntas`,
+                url: `http://localhost:8000/preguntas`,
                 headers: {'Content-Type': 'application/json'}
                 },
 
             getAllbyUserId:{
                 method: 'GET',
-                url: `http://localhost:8080/preguntas/usuario/${userId}`,
+                url: `http://localhost:8000/preguntas/usuario/${userId}`,
                 headers: {'Content-Type': 'application/json'}
             }
         }
