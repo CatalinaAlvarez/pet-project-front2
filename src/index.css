@@ -116,3 +116,9 @@ textarea {
   max-width: 50%;
   align-items: center;
 }
+
+.logo{
+  width: 50px;
+  display: flex;
+  padding-left: 10px;
+}
