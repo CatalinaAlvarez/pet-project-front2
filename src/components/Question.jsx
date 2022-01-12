@@ -9,6 +9,7 @@ import {questionListLoading} from "../newActions/questionListActions";
 import {loadUserQuestions} from "../payloads/userQuestionsPayloads";
 import {questionLoading} from "../newActions/questionActions";
 import { loadAllAnswerByParentId } from '../payloads/answerListPayloads';
+import {useEffect} from "react";
 
 
 export const Question = ({question}) => {
