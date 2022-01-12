@@ -33,7 +33,9 @@ export const Question = ({question}) => {
         setOpen(false);
     }
 
-    const handleDelete = () =>{
+    const handleDelete = (id) => () =>{
+        dispatch(deleteQuestion(id))
+        dispatch(loadQuestionById(id))
         setOpen(true)
     }
 
@@ -52,7 +54,7 @@ export const Question = ({question}) => {
                     <div>{question.category}</div>
                     <div>{question.type}</div>
                     <div>Fecha de creación: {question.dateOf}</div>
-                    <button className="btn btn-primary px-5 mr-3" onClick={handleDelete}>Eliminar</button>
+                    <button className="btn btn-primary px-5 mr-3" onClick={handleDelete(question.id)}>Eliminar</button>
                     <ModalDelete
                         msgModal={msgModal}
                         open={open}

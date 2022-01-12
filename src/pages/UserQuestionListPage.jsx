@@ -3,13 +3,15 @@ import {useEffect} from "react";
 import { loadAllQuestionsByUserId} from "../payloads/questionListPayloads";
 import {Question} from "../components/Question";
 import {Link, useNavigate} from "react-router-dom";
-import {loadQuestionById} from "../middlewares/questionPayloads";
+import {loadQuestionById} from "../payloads/questionPayloads";
 
 
 export const UserQuestionListPage = () =>{
 
     const dispatch = useDispatch();
     const userQuestions = useSelector(state => state.userQuestions.userQuestions);
+    const userId = useSelector(state => state.user.user.id)
+    const questionLoading = useSelector(state => state.question.loading)
 
     const navigate = useNavigate();
 
@@ -17,6 +19,12 @@ export const UserQuestionListPage = () =>{
         dispatch(loadQuestionById(id))
         navigate(`/preguntas/${id}`)
     }
+
+    useEffect(() =>{
+        if(questionLoading){
+            dispatch(loadAllQuestionsByUserId(userId))
+        }
+    },[questionLoading])
 
 
     return(
