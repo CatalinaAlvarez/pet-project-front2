@@ -8,6 +8,7 @@ import {deleteQuestion, loadQuestionById} from "../payloads/questionPayloads";
 import {questionListLoading} from "../newActions/questionListActions";
 import {loadUserQuestions} from "../payloads/userQuestionsPayloads";
 import {questionLoading} from "../newActions/questionActions";
+import { loadAllAnswerByParentId } from '../payloads/answerListPayloads';
 
 
 export const Question = ({question}) => {
@@ -16,6 +17,7 @@ export const Question = ({question}) => {
     const myQuestion = useSelector(state => state.question)
     const dispatch = useDispatch();
     const navigate = useNavigate()
+    const loadingQuestion = useSelector(state=> state.question.loading)
 
     const msgModal = {
         msg: "¿Desea eliminar esta pregunta?",
@@ -43,6 +45,11 @@ export const Question = ({question}) => {
         toolbar: false
     };
 
+    useEffect(() => {
+        if(loadingQuestion){
+            dispatch(loadAllAnswerByParentId(question.id)) 
+        }
+    }, [loadingQuestion])
     
     
     return(
