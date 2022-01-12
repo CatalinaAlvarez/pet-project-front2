@@ -8,7 +8,6 @@ import {app} from "./webService/firebase";
 import {PrivateLayout} from "./layouts/PrivateLayout";
 import {PublicLayout} from "./layouts/PublicLayout";
 import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
-import {userCreatedAction} from "./actions/dataTransferActions";
 import {loadUserQuestions} from "./payloads/userQuestionsPayloads";
 import {loadAllQuestions} from "./payloads/questionListPayloads";
 
