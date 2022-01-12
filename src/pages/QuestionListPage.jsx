@@ -1,21 +1,25 @@
 import { useDispatch, useSelector } from "react-redux";
-import { loadAllQuestions, loadAllQuestionsByUserId} from "../middlewares/questionListPayload";
+import {loadAllQuestions} from "../payloads/questionListPayloads";
 import {useEffect, useState} from "react";
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import { Question } from "../components/Question";
 import {loadQuestionById} from "../middlewares/questionPayloads";
+import {loadAllAnswerByParentId} from "../payloads/answerListPayloads";
+import {LoginPage} from "./LoginPage";
 
 export const QuestionListPage = () => {
 
     const dispatch = useDispatch();
+    const questionList = useSelector(state => state.questionList.questionList);
     const user = useSelector(state => state.user.user)
-    const {loading, questionList, error} = useSelector(state => state.questionList);
+    const navigate = useNavigate();
 
-    useEffect(() =>{
-        if(loading){
-            dispatch(loadAllQuestions())
-        }
-    }, [loading])
+    const handleOpenQuestion = (id) => () => {
+        dispatch(loadQuestionById(id))
+        dispatch(loadAllAnswerByParentId(id))
+        navigate(`/preguntas/${id}`)
+    }
+
 
     return (
         <div>

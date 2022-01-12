@@ -1,0 +1,1 @@
+export const herokuPath = `https://young-coast-60914.herokuapp.com/`

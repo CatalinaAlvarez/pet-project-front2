@@ -1,9 +1,9 @@
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {useDispatch, useSelector} from "react-redux";
-import {deleteAnswerById} from "../middlewares/answerListPayload"
 import { ModalDelete } from "../utils/ModalDelete";
 import { useState } from "react";
+import {deleteAnswerById} from "../payloads/answerListPayloads";
 
 export const Answer = ({answer}) => {
 
@@ -30,17 +30,22 @@ export const Answer = ({answer}) => {
         setOpen(true)
     }
 
+    const [answering, setAnswering] = useState(false);
+
+    const toggleAnswer = () =>{
+        setAnswering(!answering)
+    }
+
+
     const modules = {
         toolbar: false
     };
-    
+
     return(
         <div>
              <ReactQuill value={answer.answerBody}  
                     modules={modules}   
                     readOnly='true'/>
-            <div>{answer.score}</div>
-            <div>{answer.votes}</div>
             {(user && answer.userId === user.id) &&
                 <>
                     <button className="btn btn-primary px-5 mr-3" onClick={handleDelete}>Eliminar</button>

@@ -2,26 +2,27 @@ import { useState } from "react"
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {updateUser} from "../middlewares/dataTransferPayload";
 import {useForm} from "react-hook-form";
+import {questionListLoading} from "../actions/questionListActions";
+import {userCreatedAction} from "../actions/dataTransferActions";
 
 
 export const ProfilePage = () =>{
 
-    const user = useSelector(state=> state.dataTransfer.userData)
-    const user1 = useSelector(state=> state.user.user)
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-
-    const [updating, setUpdating] = useState(false);
+    const [updating, setUpdating] = useState(true);
     const {register, handleSubmit} = useForm();
+    const user = useSelector(state => state.user.user);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const updateHandler = (data) =>{
-        data.id = user1.id;
-        data.email = user1.email;
-        data.photo = user1.photo;
-        dispatch(updateUser(data))
-        navigate("/preguntas")
+    const updateHandler = (data) => {
+        data.id = user.id;
+        data.email = user.email;
+        data.photo = user.photo;
+        dispatch(updateUser(data));
+        dispatch(questionListLoading())
+        dispatch(userCreatedAction(data))
+        navigate("/")
     }
 
     return(

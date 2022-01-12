@@ -1,12 +1,13 @@
-import { createQuestion } from "../middlewares/questionPayloads";
 import { useState, useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
-import {questionListLoading} from "../actions/questionListActions";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import TextEditor from "../utils/TextArea";
+import {createQuestion} from "../payloads/questionPayloads";
+import {loadAllQuestions, loadAllQuestionsByUserId} from "../payloads/questionListPayloads";
+
 
 export const CreateQuestion = () =>{
 
@@ -22,10 +23,10 @@ export const CreateQuestion = () =>{
         data.userId = userData.id;
         data.questionBody = body;
         dispatch(createQuestion(data));
-        dispatch(questionListLoading())
+        dispatch(loadAllQuestionsByUserId(userData.id))
+        dispatch(loadAllQuestions())
         navigate("/mispreguntas")
     }
-
 
     return(
 

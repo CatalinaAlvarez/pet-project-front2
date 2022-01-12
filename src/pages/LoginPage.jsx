@@ -1,51 +1,37 @@
-import { userLoggingInAction, userLoggedAction, userLogoutAction } from "../actions/userActions";
-import { useDispatch, useSelector } from "react-redux";
-import { userCreatedAction } from "../actions/dataTransferActions";
+import {userLoggedAction, userLogoutAction} from "../newActions/userActions";
+import {createUser, readUser} from "../payloads/userPayloads";
+import {useDispatch, useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom"
 import { app, google } from "../webService/firebase";
-import { useEffect, useState } from "react";
-import { createUser } from "../middlewares/dataTransferPayload";
+import {useState} from "react";
 import { ModalLogin } from "../utils/ModalLogin";
-import { readUser } from '../middlewares/dataTransferPayload';
+import {loadUserQuestions} from "../payloads/userQuestionsPayloads";
+import {loadAllQuestions} from "../payloads/questionListPayloads";
+
 
 export const LoginPage = () => {
 
     const state = useSelector(state => state.user.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const userDto = useSelector(state=> state.dataTransfer.userData);
-
-    const logOutHandler = () => {
-        app.auth().signOut();
-        dispatch(userLogoutAction());
-        navigate("/");
-    }
-
-    const logInHandler = () => {
-        app.auth().signInWithPopup(google)
-            .then(user => {
-                dispatch(userLoggedAction(user.user.uid,
-                    user.user.displayName,
-                    user.user.email,
-                    user.user.photoURL));
-                navigate("/preguntas");
-                dispatch(readUser(user.user.uid))
-                if(userDto === null){
-                    dispatch(createUser({
-                        id: user.user.uid,
-                        userName: user.user.displayName,
-                        photo:user.user.photoURL,
-                        email: user.user.email,}))
-                    }
-                
-            }).catch()
-    }
 
     const [loginData, setLoginData] = useState({
         userName: null,
         password: null,
         error: null
     })
+    
+    const logOutHandler = () => {
+        app.auth().signOut();
+        dispatch(userLogoutAction());
+        navigate("/");
+    }
+
+    const logInHandler = () =>{
+        app.auth().signInWithPopup(google)
+        dispatch(loadAllQuestions())
+        navigate("/mispreguntas");
+    }
 
     const msgModal = {
         msg: "No se ha encontrado la cuenta, ¿desea revisar sus datos o registrarse?",
@@ -60,37 +46,22 @@ export const LoginPage = () => {
 
     const handleConfirm = () => {
         app.auth().createUserWithEmailAndPassword(loginData.email, loginData.password)
-            .then(user => {
-                dispatch(userLoggedAction({uid:user.user.uid,
-                    name:user.user.displayName,
-                    email:user.user.email,
-                    photo:user.user.photoURL}));
-                dispatch(userCreatedAction({id: user.user.uid,
-                    userName: user.user.displayName,
-                    photo:user.user.photoURL,
-                    email:user.user.email}))
-                dispatch(createUser({id: user.user.uid,
-                    userName: user.user.displayName,
-                    photo:user.user.photoURL,
-                    email:user.user.email}))
+            .then(response => {
+                dispatch(createUser({id: response.user.uid,
+                    userName: response.user.displayName,
+                    photo: response.user.photoURL,
+                    email:response.user.email}))
             })
         setOpen(false);
-
     }
 
-    const loginWithEmailHandler = (e) =>{
+    const logWithEmailHandler = (e) =>{
         e.preventDefault();
         app.auth().signInWithEmailAndPassword(loginData.email, loginData.password)
-            .then(user =>{
-                dispatch(userLoggedAction({uid:user.user.uid,
-                    name:user.user.displayName,
-                    email:user.user.email,
-                    photo:user.user.photoURL}));
-            })
             .catch( error => {
             setOpen(true)
-            setLoginData({...loginData, error: error.message})
-            console.clear()
+            setLoginData({...loginData, error: error.message
+            })
         })
     }
 
@@ -104,7 +75,7 @@ export const LoginPage = () => {
                 </button> :
                 <div>
                     <div className="container">
-                        <form className="mt-5 py-5 px-5" onSubmit={loginWithEmailHandler} >
+                        <form className="mt-5 py-5 px-5" onSubmit={logWithEmailHandler} >
                             <h1>
                                 Ingresar a preguntas
                             </h1>

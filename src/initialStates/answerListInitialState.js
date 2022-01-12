@@ -1,6 +1,6 @@
 export const answerListInitialState = {
     loading: null,
     answerList: [],
-    answerToAnswerList: [],
+    answerToAnswerList:[],
     error: null
 }

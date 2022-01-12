@@ -1,10 +1,10 @@
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
-import {createAnswer} from "../middlewares/dataTransferPayload";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useState} from "react";
 import TextEditor from "../utils/TextArea";
+import {createAnswer, loadAllAnswerByParentId} from "../payloads/answerListPayloads";
 
 
 export const CreateAnswerForm = () =>{
@@ -21,6 +21,7 @@ export const CreateAnswerForm = () =>{
         data.answerBody = body;
         data.parentId = question.id;
         dispatch(createAnswer(data))
+        dispatch(loadAllAnswerByParentId(question.id))
     }
 
     return(
